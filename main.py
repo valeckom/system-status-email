@@ -1,6 +1,5 @@
 import os
 import smtplib
-from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -22,13 +21,6 @@ def send_email(to, subject, message, alt_html):
             return False
 
         # create email
-        msg = EmailMessage()
-        # msg['Subject'] = subject
-        # msg['From'] = email_address
-        # msg['To'] = to
-        # msg.set_content(message)
-        # msg.add_alternative(alt_html)
-
         msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
         msg['From'] = email_address
