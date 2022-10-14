@@ -1,3 +1,4 @@
+import datetime
 import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -6,7 +7,7 @@ from string import Template
 
 from dotenv import load_dotenv
 
-from system_info import get_sys_info, get_uptime
+from system_info import get_sys_info, get_uptime, get_zpool_info
 
 _ = load_dotenv()
 
@@ -52,7 +53,11 @@ def send_email(to, subject, message, alt_html):
 
 uptime = get_uptime()
 sys_info = get_sys_info()
+zpool_info = get_zpool_info()
 title_host_name = sys_info["hostname"].title()
+
+date_obj = datetime.datetime.now()
+date_str = date_obj.strftime("%c")
 
 with open('message-template.html', 'r') as f:
     template_html_string = f.read()
@@ -60,11 +65,17 @@ with open('message-template.html', 'r') as f:
 t = Template(template_html_string)
 
 html_string = t.substitute({
-    'title_hostname': title_host_name,
-    'hostname': sys_info["hostname"],
-    'operating_system': sys_info["os"],
-    'kernel': sys_info["kernel"],
-    'uptime': uptime
+    "date": date_str,
+    "title_hostname": title_host_name,
+    "hostname": sys_info.get("hostname"),
+    "operating_system": sys_info.get("os"),
+    "kernel": sys_info.get("kernel"),
+    "uptime": uptime,
+    "size": zpool_info.get("size"),
+    "free_space": zpool_info.get("free"),
+    "fragmentation": zpool_info.get("frag"),
+    "capacity": zpool_info.get("cap"),
+    "health": zpool_info.get("health"),
 })
 
 print("main.html_string:", html_string)
