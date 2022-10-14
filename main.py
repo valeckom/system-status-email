@@ -7,7 +7,7 @@ from string import Template
 
 from dotenv import load_dotenv
 
-from system_info import get_sys_info, get_uptime, get_zpool_info
+from system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
 
 _ = load_dotenv()
 
@@ -55,6 +55,7 @@ uptime = get_uptime()
 sys_info = get_sys_info()
 zpool_info = get_zpool_info()
 title_host_name = sys_info["hostname"].title()
+pending_upgrades = get_sys_update_info()
 
 date_obj = datetime.datetime.now()
 date_str = date_obj.strftime("%c")
@@ -76,6 +77,7 @@ html_string = t.substitute({
     "fragmentation": zpool_info.get("frag"),
     "capacity": zpool_info.get("cap"),
     "health": zpool_info.get("health"),
+    "pending_updates": pending_upgrades,
 })
 
 print("main.html_string:", html_string)

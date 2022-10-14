@@ -81,3 +81,30 @@ def get_zpool_info():
             res_dict.update({res_dict_key: res_val})
 
     return res_dict
+
+
+def get_sys_update_info():
+    r = '-'
+
+    try:
+        cmd_result = subprocess.run(
+            ["apt-get", "upgrade", "--dry-run"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        print("get_sys_update_info.cmd_result:", cmd_result)
+    except Exception as e:
+        print("get_sys_update_info.ERROR: ", e)
+        return r
+
+    regex = r"(?P<pendingUpgrades>\d*) upgraded, "
+
+    matches = re.search(regex, cmd_result.stdout)
+
+    if matches:
+        res = matches.groupdict()
+        print("get_sys_update_info.res:", res)
+        r = res.get("pendingUpgrades")
+
+    return r
