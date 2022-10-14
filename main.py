@@ -2,8 +2,11 @@ import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from string import Template
 
 from dotenv import load_dotenv
+
+from system_info import get_sys_info, get_uptime
 
 _ = load_dotenv()
 
@@ -47,18 +50,27 @@ def send_email(to, subject, message, alt_html):
     return False
 
 
-send_email("mark86v@gmail.com", "Test", "Hello world!", """\
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-    <title>Title</title>
-    <meta name="format-detection" content="date=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <style type="text/CSS"></style>
-</head>
-<body>
-<h1>Test Email</h1>
-<p>Hello world!</p>
-</body>
-</html>""")
+uptime = get_uptime()
+sys_info = get_sys_info()
+title_host_name = sys_info["hostname"].title()
+
+with open('message-template.html', 'r') as f:
+    template_html_string = f.read()
+
+t = Template(template_html_string)
+
+html_string = t.substitute({
+    'title_hostname': title_host_name,
+    'hostname': sys_info["hostname"],
+    'operating_system': sys_info["os"],
+    'kernel': sys_info["kernel"],
+    'uptime': uptime
+})
+
+print("main.html_string:", html_string)
+
+send_email(
+    "mark86v@gmail.com",
+    f"{title_host_name}'s System Status",
+    "Hello world!",
+    html_string)
