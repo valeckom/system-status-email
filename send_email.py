@@ -9,9 +9,9 @@ from dotenv import load_dotenv
 _ = load_dotenv()
 
 
-def send_email(to, subject, message, alt_html):
+def send_email(to, subject, message, message_html):
     try:
-        email_address = os.environ.get("EMAIL_ADDRESS")
+        email_address = os.environ.get("EMAIL_FROM_ADDRESS")
         email_password = os.environ.get("EMAIL_PASSWORD")
 
         if email_address is None or email_password is None:
@@ -28,7 +28,7 @@ def send_email(to, subject, message, alt_html):
 
         # Record the MIME types of both parts - text/plain and text/html.
         part1 = MIMEText(message, 'plain')
-        part2 = MIMEText(alt_html, 'html')
+        part2 = MIMEText(message_html, 'html')
 
         # Attach parts into message container.
         # According to RFC 2046, the last part of a multipart message, in this case
