@@ -17,7 +17,7 @@ def get_sys_info():
 
     if matches:
         res = matches.groupdict()
-        print("get_sys_info.res:", res)
+        print("get_sys_info.public:", res)
         return res
 
 
@@ -28,12 +28,12 @@ def get_uptime():
         stderr=subprocess.PIPE,
         text=True
     )
-    print("get_uptime.cmd_result:", cmd_result)
+    print("get_sys_info.get_uptime.cmd_result:", cmd_result)
 
     up_time = cmd_result.stdout.lstrip("up")
     up_time = up_time.strip()
 
-    print("get_sys_info.up_time:", up_time)
+    print("get_sys_info.get_uptime:", up_time)
     return up_time
 
 
@@ -104,7 +104,7 @@ def get_sys_update_info():
 
     if matches:
         res = matches.groupdict()
-        print("get_sys_update_info.res:", res)
+        print("get_sys_update_info.public:", res)
         r = res.get("pendingUpgrades")
 
     return r
