@@ -4,8 +4,8 @@ from string import Template
 
 from dotenv import load_dotenv
 
-from src.env_init import env_init
-from system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
+from app.src.env_init import env_init
+from app.src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
 
 _ = load_dotenv()
 
@@ -21,7 +21,7 @@ def main():
     date_obj = datetime.datetime.now()
     date_str = date_obj.strftime("%c")
 
-    with open('./public/message-template.html', 'r') as f:
+    with open('public/message-template.html', 'r') as f:
         template_html_string = f.read()
 
     t = Template(template_html_string)

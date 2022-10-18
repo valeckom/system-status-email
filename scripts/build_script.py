@@ -12,9 +12,8 @@ def clean_paths():
         # Remove all directory content
         try:
             shutil.rmtree(path)
-        except Exception as e:
+        except:
             print("build_script.clean_paths - Error deleting directory")
-            raise e
 
 
 def do_build():
@@ -22,11 +21,11 @@ def do_build():
 
     PyInstaller.__main__.run([
         "--clean",
-        "main.py",
+        "./app/main.py",
         "--name",
         "system_email",
         "--add-data",
-        "public:public"
+        "./app/public:public"
     ])
 
 
