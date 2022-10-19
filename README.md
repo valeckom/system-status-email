@@ -11,6 +11,7 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
 * [Script install](#script-install)
     * [Get the files](#get-the-files)
     * [Configure the script](#configure-the-script)
+        * [Example .env file](#example-env-file)
     * [Create cron task](#create-cron-task)
 * [Future improvements](#future-improvements)
 
@@ -45,6 +46,16 @@ Edit the file to be able to send emails.
 
 ```shell
 sudo nano /opt/system_email/.env
+```
+
+#### Example .env file
+
+The file will look like the following when done *but with your values*.
+
+```text
+EMAIL_FROM_ADDRESS=myaddress@provider.com
+EMAIL_PASSWORD=dbabdszdkxvpfkdc
+EMAIL_TO_ADDRESS=youraddress@provider.com
 ```
 
 ### Create cron task
