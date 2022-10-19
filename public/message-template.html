@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>${title_hostname}'s System Status</title>
+    <meta content="date=no" name="format-detection">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <style type="text/CSS"></style>
+</head>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: Roboto, Arial, sans-serif;
+            padding: 1rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        tr {
+            border-bottom: 1px solid;
+        }
+
+        td, th {
+            text-align: left;
+            padding: .5rem;
+        }
+    </style>
+</head>
+<body>
+<h3>${title_hostname}'s update</h3>
+<p>${date}</p>
+
+<h3>System status</h3>
+<table>
+    <tr>
+        <th>Hostname</th>
+        <td>${hostname}</td>
+    </tr>
+    <tr>
+        <th>Operating System</th>
+        <td>${operating_system}</td>
+    </tr>
+    <tr>
+        <th>Kernel</th>
+        <td>${kernel}</td>
+    </tr>
+    <tr>
+        <th>Uptime</th>
+        <td>${uptime}</td>
+    </tr>
+    <tr>
+        <th>Pending updates</th>
+        <td>${pending_updates}</td>
+    </tr>
+</table>
+
+
+<h3>ZPool status</h3>
+<table>
+    <tr>
+        <th>Size</th>
+        <td>${size}</td>
+    </tr>
+    <tr>
+        <th>Free space</th>
+        <td>${free_space}</td>
+    </tr>
+    <tr>
+        <th>Fragmentation</th>
+        <td>${fragmentation}</td>
+    </tr>
+    <tr>
+        <th>Capacity</th>
+        <td>${capacity}</td>
+    </tr>
+    <tr>
+        <th>Health</th>
+        <td>${health}</td>
+    </tr>
+</table>
+</body>
+</html>
