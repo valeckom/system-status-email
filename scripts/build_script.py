@@ -25,6 +25,8 @@ def do_build():
         PACKAGE_NAME,
         "--add-data",
         "./public:public",
+        "--add-data",
+        "./README.md:.",
     ])
 
 
