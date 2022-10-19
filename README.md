@@ -1,5 +1,21 @@
 # System Email
 
+This script is for emailing (Debian distro) Linux system information for passive
+monitoring. The regestered email address will receive a weekly email containing
+basic system, along with storage, information.
+
+If there are any issues refer to the `system_email.log` inside `/opt/system_email`.
+
+<!-- TOC -->
+
+* [Script install](#script-install)
+    * [Get the files](#get-the-files)
+    * [Configure the script](#configure-the-script)
+    * [Create cron task](#create-cron-task)
+* [Future improvements](#future-improvements)
+
+<!-- TOC -->
+
 ## Script install
 
 ### Get the files
@@ -45,12 +61,12 @@ Create a file `system_email` (with no extension) in `/etc/cron.weekly`. Fill it 
 
 ## Future improvements
 
-1. Installer script
+1. Add script version/build-time
+2. Add regular drive table
+3. Installer script
     - add script to cron.weekly...
     - generate .env with user supplied values
-2. Script version
-3. Add regular drive table
-4. Add S.M.A.R.T. dive table
-5. Make tables dynamic based on if data exists (hide tables that do not contain data)
-6. Make a dashboard section for quick information (&check; or &cross; for features)
-7. Add script version/build-time
+4. Convert README.md to README.txt for build bundle
+5. Add S.M.A.R.T. drive info table
+6. Make tables dynamic based on if data exists (hide tables that do not contain data)
+7. Make a dashboard section for quick information (&check; or &cross; for features)
