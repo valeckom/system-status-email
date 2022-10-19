@@ -54,7 +54,7 @@ def get_zpool_info():
 
     try:
         cmd_result = subprocess.run(
-            ["zpool", 'list'],
+            ["/sbin/zpool", 'list'],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
