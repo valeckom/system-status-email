@@ -8,6 +8,7 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
 
 <!-- TOC -->
 
+* [Email example](#email-example)
 * [Script install](#script-install)
     * [Get the files](#get-the-files)
     * [Configure the script](#configure-the-script)
@@ -16,6 +17,64 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
 * [Future improvements](#future-improvements)
 
 <!-- TOC -->
+
+## Email example
+
+<hr/>
+<body>
+<h3>Main Server's update</h3>
+<p>Wed Oct 19 23:17:02 2022</p>
+
+<h3>System status</h3>
+<table>
+    <tr>
+        <th>Hostname</th>
+        <td>mainserver</td>
+    </tr>
+    <tr>
+        <th>Operating System</th>
+        <td>Ubuntu 20.04.5 LTS</td>
+    </tr>
+    <tr>
+        <th>Kernel</th>
+        <td>Linux 5.4.0-128-generic</td>
+    </tr>
+    <tr>
+        <th>Uptime</th>
+        <td>6 hours, 8 minutes</td>
+    </tr>
+    <tr>
+        <th>Pending updates</th>
+        <td>0</td>
+    </tr>
+</table>
+
+
+<h3>ZPool status</h3>
+<table>
+    <tr>
+        <th>Size</th>
+        <td>18.1T</td>
+    </tr>
+    <tr>
+        <th>Free space</th>
+        <td>3.36T</td>
+    </tr>
+    <tr>
+        <th>Fragmentation</th>
+        <td>12%</td>
+    </tr>
+    <tr>
+        <th>Capacity</th>
+        <td>81%</td>
+    </tr>
+    <tr>
+        <th>Health</th>
+        <td>ONLINE</td>
+    </tr>
+</table>
+</body>
+<hr/>
 
 ## Script install
 
