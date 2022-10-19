@@ -1,0 +1,19 @@
+${title_hostname}'s update
+${date}
+
+System status
+-------------
+Hostname:           ${hostname}
+Operating System:   ${operating_system}
+Kernel:             ${kernel}
+Uptime:             ${uptime}
+Pending updates:    ${pending_updates}
+
+
+ZPool status
+------------
+Size:            ${size}
+Free space:      ${free_space}
+Fragmentation:   ${fragmentation}
+Capacity:        ${capacity}
+Health:          ${health}

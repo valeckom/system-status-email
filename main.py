@@ -4,8 +4,9 @@ from string import Template
 
 from dotenv import load_dotenv
 
-from app.src.env_init import env_init
-from app.src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
+from src.env_init import env_init
+from src.send_email import send_email
+from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
 
 _ = load_dotenv()
 
@@ -21,12 +22,7 @@ def main():
     date_obj = datetime.datetime.now()
     date_str = date_obj.strftime("%c")
 
-    with open('public/message-template.html', 'r') as f:
-        template_html_string = f.read()
-
-    t = Template(template_html_string)
-
-    html_string = t.substitute({
+    template_mapping = {
         "date": date_str,
         "title_hostname": title_host_name,
         "hostname": sys_info.get("hostname"),
@@ -39,19 +35,33 @@ def main():
         "capacity": z_pool_info.get("cap"),
         "health": z_pool_info.get("health"),
         "pending_updates": pending_upgrades,
-    })
+    }
 
-    print("main.html_string:", html_string)
+    with open('public/message-template.html', 'r') as f:
+        template_html_string = f.read()
 
-    print("to: ", os.environ.get("EMAIL_TO_ADDRESS"))
+    t = Template(template_html_string)
 
-    # to_address = os.environ.get("EMAIL_TO_ADDRESS")
+    html_string = t.substitute(template_mapping)
 
-    # send_email(
-    #     to_address,
-    #     f"{title_host_name}'s Status Update",
-    #     "Hello world!",
-    #     html_string)
+    print("main:html_string:", html_string)
+
+    with open('public/message-template.txt', 'r') as f:
+        template_text_string = f.read()
+
+    t = Template(template_text_string)
+
+    text_string = t.substitute(template_mapping)
+
+    print("main:text_string:", text_string)
+
+    to_address = os.environ.get("EMAIL_TO_ADDRESS")
+
+    send_email(
+        to_address,
+        f"{title_host_name}'s Status Update",
+        text_string,
+        html_string)
 
 
 if __name__ == '__main__':
