@@ -86,7 +86,7 @@ sudo chmod +x /etc/cron.weekly/system_email
 
 ## Future improvements
 
-1. Add script version/build-time
+1. Add script version/build-time/build-number
 2. Add regular drive table
 3. Installer script
     - add script to `/etc/cron.weekly`
