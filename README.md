@@ -78,6 +78,12 @@ statements or errors to the log `system_email.log` in the installation dir
 
 ```
 
+Make it executable.
+
+```shell
+sudo chmod +x /etc/cron.weekly/system_email
+```
+
 ## Future improvements
 
 1. Add script version/build-time
