@@ -9,7 +9,8 @@ from src.file_util import get_path
 from src.send_email import send_email
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
 
-_ = load_dotenv()
+# Need to load this once.
+load_dotenv(dotenv_path=get_path(".env"))
 
 
 def main():
