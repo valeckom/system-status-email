@@ -5,6 +5,7 @@ from string import Template
 from dotenv import load_dotenv
 
 from src.env_init import env_init
+from src.file_util import get_path
 from src.send_email import send_email
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
 
@@ -37,7 +38,7 @@ def main():
         "pending_updates": pending_upgrades,
     }
 
-    with open('public/message-template.html', 'r') as f:
+    with open(get_path("public/message-template.html"), 'r') as f:
         template_html_string = f.read()
 
     t = Template(template_html_string)
@@ -46,7 +47,7 @@ def main():
 
     print("main:html_string:", html_string)
 
-    with open('public/message-template.txt', 'r') as f:
+    with open(get_path("public/message-template.txt"), 'r') as f:
         template_text_string = f.read()
 
     t = Template(template_text_string)

@@ -2,15 +2,18 @@ import os
 import re
 from os.path import exists
 
-ENV_PATH = "./.env"
-EXCEPTION = Exception(".env is not complete. Check that all properties in .env are complete.")
+from src.file_util import get_path
+
+ENV_PATH = get_path(".env")
+ENV_TEMPLATE_PATH = get_path("public/env_template.txt")
+EXCEPTION = Exception(f"{ENV_PATH} is not complete. Check that all properties in .env are complete.")
 
 
 def check_env_values():
     print("env_init.check_env_values - checking for valid .env")
 
     # Read the properties from the template
-    with open("./public/env_template.txt", 'r') as f:
+    with open(ENV_TEMPLATE_PATH, 'r') as f:
         template_string = f.read()
 
     regex = "^(.*)="
@@ -28,7 +31,7 @@ def check_env_values():
 def create_env_file():
     print("env_init.create_env_file - creating .env")
 
-    with open("./public/env_template.txt", 'r') as f:
+    with open(ENV_TEMPLATE_PATH, 'r') as f:
         template_string = f.read()
 
     with open(ENV_PATH, 'w') as f:
@@ -37,6 +40,7 @@ def create_env_file():
 
 def env_init():
     print("env_init - checking for valid .env")
+
     file_exists = exists(ENV_PATH)
 
     if file_exists:
