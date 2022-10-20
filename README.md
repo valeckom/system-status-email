@@ -20,7 +20,6 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
 
 ## Email example
 
-<hr/>
 <body>
 <h3>Main Server's update</h3>
 <p>Wed Oct 19 23:17:02 2022</p>
@@ -145,12 +144,14 @@ sudo chmod +x /etc/cron.weekly/system_email
 
 ## Future improvements
 
-1. Add script version/build-time/build-number
-2. Add regular drive table
-3. Installer script
+1. Add regular drive table
+2. Be able to print version
+3. Be able to do a dry run
+4. Installer script
     - add script to `/etc/cron.weekly`
     - generate `.env` with user supplied values
-4. Convert `README.md` to `README.txt` for build bundle
-5. Add S.M.A.R.T. drive info table
-6. Make tables dynamic based on if data exists (hide tables that do not contain data)
-7. Make a dashboard section for quick information (&check; or &cross; for features)
+5. Update script - load the new version and keep the `.env` file
+6. Convert `README.md` to `README.txt` for build bundle
+7. Add S.M.A.R.T. drive info table
+8. Make tables dynamic based on if data exists (hide tables that do not contain data)
+9. Make a dashboard section for quick information (&check; or &cross; for features)

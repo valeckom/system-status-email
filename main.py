@@ -6,14 +6,19 @@ from dotenv import load_dotenv
 
 from src.env_init import env_init
 from src.file_util import get_path
-from src.send_email import send_email
+from src.load_info import load_info, get_info
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
-
-# Need to load this once.
-load_dotenv(dotenv_path=get_path(".env"))
 
 
 def main():
+    # Initialize the scripts global space
+    # This must happen before anything else
+    load_dotenv(dotenv_path=get_path(".env"))
+    load_info()
+
+    print(f"{get_info('display_name')}")
+    print(f"version {get_info('version')}.{get_info('build_timestamp')}\n")
+
     env_init()
     uptime = get_uptime()
     sys_info = get_sys_info()
@@ -59,11 +64,11 @@ def main():
 
     to_address = os.environ.get("EMAIL_TO_ADDRESS")
 
-    send_email(
-        to_address,
-        f"{title_host_name}'s Status Update",
-        text_string,
-        html_string)
+    # send_email(
+    #     to_address,
+    #     f"{title_host_name}'s Status Update",
+    #     text_string,
+    #     html_string)
 
 
 if __name__ == '__main__':
