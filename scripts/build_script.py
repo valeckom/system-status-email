@@ -1,13 +1,19 @@
+import json
 import os
 import shutil
 import tarfile
+import time
 
 import PyInstaller.__main__
 
-PACKAGE_NAME = "system_email"
+INFO_FILENAME = "info.json"
 
 
 def clean_paths():
+    """Remove build directories;
+
+    insuring our new build does not contain any old  build artifacts.
+    """
     paths = ["./build", "./dist"]
 
     for path in paths:
@@ -16,13 +22,11 @@ def clean_paths():
 
 
 def do_build():
-    print("build_script.do_build")
-
     PyInstaller.__main__.run([
         "--clean",
         "./main.py",
         "--name",
-        PACKAGE_NAME,
+        build_info["name"],
         "--add-data",
         "./public:public",
         "--add-data",
@@ -31,8 +35,8 @@ def do_build():
 
 
 def make_tarfile():
-    output_filename = f"./dist/{PACKAGE_NAME}.tar.gz"
-    source_dir = f"./dist/{PACKAGE_NAME}"
+    output_filename = f"./dist/{build_info.get('name')}.tar.gz"
+    source_dir = f"./dist/{build_info.get('name')}"
 
     with tarfile.open(output_filename, "w:gz") as tar:
         dest_path = os.path.basename(source_dir)
@@ -40,6 +44,29 @@ def make_tarfile():
         tar.add(source_dir, arcname=dest_path)
 
 
+def get_build_info() -> dict:
+    """
+    Read info.json and make the values available to the rest of the script.
+    """
+    with open(f"./{INFO_FILENAME}") as f:
+        info = json.load(f)
+
+    info["build_timestamp"] = int(time.time())
+
+    print(f"gen_build_info.info: {info}")
+
+    return info
+
+
+def gen_dist_info():
+    print(f"gen_dist_info.build_info: {build_info}")
+
+    with open(f"./dist/{build_info.get('name')}/{INFO_FILENAME}", 'w') as f:
+        f.write(json.dumps(build_info))
+
+
+build_info = get_build_info()
 clean_paths()
 do_build()
+gen_dist_info()
 make_tarfile()
