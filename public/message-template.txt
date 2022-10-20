@@ -4,11 +4,16 @@ ${date}
 System status
 -------------
 Hostname:           ${hostname}
-Operating System:   ${operating_system}
-Kernel:             ${kernel}
 Uptime:             ${uptime}
 Pending updates:    ${pending_updates}
 
+Drive partition status
+----------------------
+Filesystem:    ${drive_filesystem}
+Size:          ${drive_size}
+Used:          ${drive_used}
+Available:     ${drive_avail}
+Use%:          ${drive_use_percent}
 
 ZPool status
 ------------

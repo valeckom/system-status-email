@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 from src.env_init import env_init
 from src.file_util import get_path
 from src.load_info import load_info, get_info
-from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info
+from src.send_email import send_email
+from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info, get_drive_partition_info
 
 
 def main():
@@ -23,6 +24,7 @@ def main():
     uptime = get_uptime()
     sys_info = get_sys_info()
     z_pool_info = get_zpool_info()
+    drive_info = get_drive_partition_info()
     title_host_name = sys_info["hostname"].title()
     pending_upgrades = get_sys_update_info()
 
@@ -42,6 +44,11 @@ def main():
         "capacity": z_pool_info.get("cap"),
         "health": z_pool_info.get("health"),
         "pending_updates": pending_upgrades,
+        "drive_filesystem": drive_info.get("filesystem"),
+        "drive_size": drive_info.get("size"),
+        "drive_used": drive_info.get("used"),
+        "drive_avail": drive_info.get("avail"),
+        "drive_use_percent": drive_info.get("usepercent"),
     }
 
     with open(get_path("public/message-template.html"), 'r') as f:
@@ -64,11 +71,11 @@ def main():
 
     to_address = os.environ.get("EMAIL_TO_ADDRESS")
 
-    # send_email(
-    #     to_address,
-    #     f"{title_host_name}'s Status Update",
-    #     text_string,
-    #     html_string)
+    send_email(
+        to_address,
+        f"{title_host_name}'s Status Update",
+        text_string,
+        html_string)
 
 
 if __name__ == '__main__':
