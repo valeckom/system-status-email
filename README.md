@@ -31,20 +31,37 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
         <td>mainserver</td>
     </tr>
     <tr>
-        <th>Operating System</th>
-        <td>Ubuntu 20.04.5 LTS</td>
-    </tr>
-    <tr>
-        <th>Kernel</th>
-        <td>Linux 5.4.0-128-generic</td>
-    </tr>
-    <tr>
         <th>Uptime</th>
         <td>6 hours, 8 minutes</td>
     </tr>
     <tr>
         <th>Pending updates</th>
         <td>0</td>
+    </tr>
+</table>
+
+
+<h3>Drive partition status</h3>
+<table>
+    <tr>
+        <th>Filesystem</th>
+        <td>/dev/sda1</td>
+    </tr>
+    <tr>
+        <th>Size</th>
+        <td>457G</td>
+    </tr>
+    <tr>
+        <th>Used</th>
+        <td>70G</td>
+    </tr>
+    <tr>
+        <th>Available</th>
+        <td>364G</td>
+    </tr>
+    <tr>
+        <th>Use%</th>
+        <td>17%</td>
     </tr>
 </table>
 
@@ -144,14 +161,14 @@ sudo chmod +x /etc/cron.weekly/system_email
 
 ## Future improvements
 
-1. Add regular drive table
-2. Be able to print version
-3. Be able to do a dry run
-4. Installer script
+1. Be able to print version
+2. Be able to do a dry run
+3. Installer script
     - add script to `/etc/cron.weekly`
     - generate `.env` with user supplied values
-5. Update script - load the new version and keep the `.env` file
-6. Convert `README.md` to `README.txt` for build bundle
-7. Add S.M.A.R.T. drive info table
-8. Make tables dynamic based on if data exists (hide tables that do not contain data)
+4. Update script - load the new version and keep the `.env` file
+5. Convert `README.md` to `README.txt` for build bundle
+6. Add S.M.A.R.T. drive info table
+7. Make tables dynamic based on if data exists (hide tables that do not contain data)
+8. Be able to display more than 1 drive in "Drive partition status"
 9. Make a dashboard section for quick information (&check; or &cross; for features)

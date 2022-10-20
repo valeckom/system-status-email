@@ -42,14 +42,6 @@
         <td>${hostname}</td>
     </tr>
     <tr>
-        <th>Operating System</th>
-        <td>${operating_system}</td>
-    </tr>
-    <tr>
-        <th>Kernel</th>
-        <td>${kernel}</td>
-    </tr>
-    <tr>
         <th>Uptime</th>
         <td>${uptime}</td>
     </tr>
@@ -59,6 +51,29 @@
     </tr>
 </table>
 
+<h3>Drive partition status</h3>
+<table>
+    <tr>
+        <th>Filesystem</th>
+        <td>${drive_filesystem}</td>
+    </tr>
+    <tr>
+        <th>Size</th>
+        <td>${drive_size}</td>
+    </tr>
+    <tr>
+        <th>Used</th>
+        <td>${drive_used}</td>
+    </tr>
+    <tr>
+        <th>Available</th>
+        <td>${drive_avail}</td>
+    </tr>
+    <tr>
+        <th>Use%</th>
+        <td>${drive_use_percent}</td>
+    </tr>
+</table>
 
 <h3>ZPool status</h3>
 <table>
