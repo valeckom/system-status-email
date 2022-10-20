@@ -44,7 +44,10 @@ def make_tarfile():
         tar.add(source_dir, arcname=dest_path)
 
 
-def get_build_info():
+def get_build_info() -> dict:
+    """
+    Read info.json and make the values available to the rest of the script.
+    """
     with open(f"./{INFO_FILENAME}") as f:
         info = json.load(f)
 
@@ -57,6 +60,7 @@ def get_build_info():
 
 def gen_dist_info():
     print(f"gen_dist_info.build_info: {build_info}")
+
     with open(f"./dist/{build_info.get('name')}/{INFO_FILENAME}", 'w') as f:
         f.write(json.dumps(build_info))
 
