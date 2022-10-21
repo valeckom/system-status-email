@@ -16,6 +16,7 @@ If there are any issues refer to the `system_email.log` inside `/opt/system_emai
 * [Usage](#usage)
     * [Options](#options)
         * [-d, --dry-run](#-d---dry-run)
+        * [-i, --install](#-i---install)
         * [-v, --version](#-v---version)
         * [-h, --help](#-h---help)
 * [Email example](#email-example)
@@ -72,28 +73,11 @@ EMAIL_TO_ADDRESS=youraddress@provider.com
 
 ### Create cron task
 
-Create a file `system_email` (with no extension) in `/etc/cron.weekly`.
+Run the script using the [`--install`](#-i---install) argument to generate the cron
+script in `/etc/cron.weekly/`.
 
 ```shell
-sudo nano /etc/cron.weekly/system_email
-```
-
-Fill it with the lines below. This will run the script and log any print
-statements or errors to the log `system_email.log` in the installation dir
-`/opt/system_email`.
-*Include a blank line at the end of the file.*
-
-```shell
-#!/bin/bash
-
-/opt/system_email/system_email > /opt/system_email/system_email.log
-
-```
-
-Make it executable.
-
-```shell
-sudo chmod +x /etc/cron.weekly/system_email
+sudo ./opt/system_email/system_email --install
 ```
 
 ## Usage
@@ -107,6 +91,16 @@ system_email [options]
 #### -d, --dry-run
 
 Run the script without sending an email.
+
+*This option can also be used with [`--install`](#-i---install) to try out the
+installation without modifying the system*
+
+#### -i, --install
+
+Install/Update the script into the system.
+
+> #### Important
+> To modify files in the `/etc/` dir, this option requires elevated privileges.
 
 #### -v, --version
 
@@ -194,11 +188,11 @@ Show the help message and exit.
 ## Future improvements
 
 1. Installer script
-    - add script to `/etc/cron.weekly`
     - generate `.env` with user supplied values
-2. Update script - load the new version and keep the `.env` file
-3. Convert `README.md` to `README.txt` for build bundle
-4. Add S.M.A.R.T. drive info table
-5. Make tables dynamic based on if data exists (hide tables that do not contain data)
-6. Be able to display more than 1 drive in "Drive partition status"
-7. Make a dashboard section for quick information (&check; or &cross; for features)
+2. Uninstall script
+3. Update script - load the new version and keep the `.env` file
+4. Convert `README.md` to `README.txt` for build bundle
+5. Add S.M.A.R.T. drive info table
+6. Make tables dynamic based on if data exists (hide tables that do not contain data)
+7. Be able to display more than 1 drive in "Drive partition status"
+8. Make a dashboard section for quick information (&check; or &cross; for features)

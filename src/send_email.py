@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def send_email(to, subject, message, message_html, dry_run=False):
+def send_email(to, subject, message, message_html):
     email_address = os.environ.get("EMAIL_FROM_ADDRESS")
     email_password = os.environ.get("EMAIL_PASSWORD")
 
@@ -34,5 +34,8 @@ def send_email(to, subject, message, message_html, dry_run=False):
     # send email
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(email_address, email_password)
-        if not dry_run:
-            smtp.send_message(msg)
+
+        if os.environ.get('dry_run'):
+            return
+
+        smtp.send_message(msg)

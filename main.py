@@ -9,6 +9,7 @@ from src.env_init import env_init
 from src.file_util import get_path
 from src.load_info import load_info, get_info
 from src.send_email import send_email
+from src.setup.setup import setup
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info, get_drive_partition_info
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -20,17 +21,38 @@ load_info()
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
-@click.option("--dry-run", "-d", is_flag=True, default=False, help="Run the script without sending an email.")
-@click.option("--version", "-v", is_flag=True, default=False, help="Show the version and exit.")
-def main(dry_run, version):
+@click.option("--dry-run",
+              "-d",
+              is_flag=True,
+              default=False,
+              help="Run the script without sending an email.")
+@click.option("--install",
+              "-i",
+              is_flag=True,
+              default=False,
+              help="Install/Update the script into the system. "
+                   "Using this option requires elevated privileges.")
+@click.option("--version",
+              "-v",
+              is_flag=True,
+              default=False,
+              help="Show the version and exit.")
+def main(dry_run, install, version):
     print(f"{get_info('display_name')}")
     print(f"version {get_info('version')}.{get_info('build_timestamp')}\n")
+
+    if dry_run:
+        os.environ['dry_run'] = 'dry_run'
 
     if version:
         return
 
+    if install:
+        setup()
+        return
+
     if dry_run:
-        print("Dry run started. This will not send a email.\n")
+        print("--dry-run: No email will be sent.\n")
 
     env_init()
     uptime = get_uptime()
@@ -85,8 +107,7 @@ def main(dry_run, version):
         to_address,
         f"{title_host_name}'s Status Update",
         text_string,
-        html_string,
-        dry_run)
+        html_string)
 
     print(f"{get_info('display_name')} completed successfully.")
 
