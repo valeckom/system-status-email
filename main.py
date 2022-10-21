@@ -11,17 +11,26 @@ from src.load_info import load_info, get_info
 from src.send_email import send_email
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info, get_drive_partition_info
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
 # Initialize the scripts global space
 # This must happen before anything else
 load_dotenv(dotenv_path=get_path(".env"))
 load_info()
 
 
-@click.command()
-@click.version_option(version=get_info('version'))
-def main():
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("--dry-run", "-d", is_flag=True, default=False, help="Run the script without sending an email.")
+@click.option("--version", "-v", is_flag=True, default=False, help="Show the version and exit.")
+def main(dry_run, version):
     print(f"{get_info('display_name')}")
     print(f"version {get_info('version')}.{get_info('build_timestamp')}\n")
+
+    if version:
+        return
+
+    if dry_run:
+        print("Dry run started. This will not send a email.\n")
 
     env_init()
     uptime = get_uptime()
@@ -61,8 +70,6 @@ def main():
 
     html_string = t.substitute(template_mapping)
 
-    print("main:html_string:", html_string)
-
     with open(get_path("public/message-template.txt"), 'r') as f:
         template_text_string = f.read()
 
@@ -78,7 +85,10 @@ def main():
         to_address,
         f"{title_host_name}'s Status Update",
         text_string,
-        html_string)
+        html_string,
+        dry_run)
+
+    print(f"{get_info('display_name')} completed successfully.")
 
 
 if __name__ == '__main__':

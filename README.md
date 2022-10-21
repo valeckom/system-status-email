@@ -2,41 +2,26 @@
 
 This script is for emailing (Debian distro) Linux system information for passive
 monitoring. The registered email address will receive a weekly email containing
-basic system, along with storage, information.
+basic system and storage information.
 
 If there are any issues refer to the `system_email.log` inside `/opt/system_email`.
 
 <!-- TOC -->
 
-* [Usage](#usage)
-    * [Options](#options)
-        * [--version](#--version)
-        * [--help](#--help)
 * [Script install](#script-install)
     * [Get the files](#get-the-files)
     * [Configure the script](#configure-the-script)
         * [Example .env file](#example-env-file)
     * [Create cron task](#create-cron-task)
+* [Usage](#usage)
+    * [Options](#options)
+        * [-d, --dry-run](#-d---dry-run)
+        * [-v, --version](#-v---version)
+        * [-h, --help](#-h---help)
 * [Email example](#email-example)
 * [Future improvements](#future-improvements)
 
 <!-- TOC -->
-
-## Usage
-
-```shell
-system_email [options]
-```
-
-### Options
-
-#### --version
-
-Show the version and exit.
-
-#### --help
-
-Show the help message and exit.
 
 ## Script install
 
@@ -110,6 +95,26 @@ Make it executable.
 ```shell
 sudo chmod +x /etc/cron.weekly/system_email
 ```
+
+## Usage
+
+```shell
+system_email [options]
+```
+
+### Options
+
+#### -d, --dry-run
+
+Run the script without sending an email.
+
+#### -v, --version
+
+Show the version and exit.
+
+#### -h, --help
+
+Show the help message and exit.
 
 ## Email example
 
@@ -188,13 +193,12 @@ sudo chmod +x /etc/cron.weekly/system_email
 
 ## Future improvements
 
-1. Be able to do a dry run
-2. Installer script
+1. Installer script
     - add script to `/etc/cron.weekly`
     - generate `.env` with user supplied values
-3. Update script - load the new version and keep the `.env` file
-4. Convert `README.md` to `README.txt` for build bundle
-5. Add S.M.A.R.T. drive info table
-6. Make tables dynamic based on if data exists (hide tables that do not contain data)
-7. Be able to display more than 1 drive in "Drive partition status"
-8. Make a dashboard section for quick information (&check; or &cross; for features)
+2. Update script - load the new version and keep the `.env` file
+3. Convert `README.md` to `README.txt` for build bundle
+4. Add S.M.A.R.T. drive info table
+5. Make tables dynamic based on if data exists (hide tables that do not contain data)
+6. Be able to display more than 1 drive in "Drive partition status"
+7. Make a dashboard section for quick information (&check; or &cross; for features)
