@@ -196,9 +196,10 @@ Show the help message and exit.
 1. Installer script
     - add script to `/etc/cron.weekly`
     - generate `.env` with user supplied values
-2. Update script - load the new version and keep the `.env` file
-3. Convert `README.md` to `README.txt` for build bundle
-4. Add S.M.A.R.T. drive info table
-5. Make tables dynamic based on if data exists (hide tables that do not contain data)
-6. Be able to display more than 1 drive in "Drive partition status"
-7. Make a dashboard section for quick information (&check; or &cross; for features)
+2. Uninstall script
+3. Update script - load the new version and keep the `.env` file
+4. Convert `README.md` to `README.txt` for build bundle
+5. Add S.M.A.R.T. drive info table
+6. Make tables dynamic based on if data exists (hide tables that do not contain data)
+7. Be able to display more than 1 drive in "Drive partition status"
+8. Make a dashboard section for quick information (&check; or &cross; for features)
