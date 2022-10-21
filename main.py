@@ -2,6 +2,7 @@ import datetime
 import os
 from string import Template
 
+import click
 from dotenv import load_dotenv
 
 from src.env_init import env_init
@@ -10,13 +11,15 @@ from src.load_info import load_info, get_info
 from src.send_email import send_email
 from src.system_info import get_sys_info, get_uptime, get_zpool_info, get_sys_update_info, get_drive_partition_info
 
+# Initialize the scripts global space
+# This must happen before anything else
+load_dotenv(dotenv_path=get_path(".env"))
+load_info()
 
+
+@click.command()
+@click.version_option(version=get_info('version'))
 def main():
-    # Initialize the scripts global space
-    # This must happen before anything else
-    load_dotenv(dotenv_path=get_path(".env"))
-    load_info()
-
     print(f"{get_info('display_name')}")
     print(f"version {get_info('version')}.{get_info('build_timestamp')}\n")
 
