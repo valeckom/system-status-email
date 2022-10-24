@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/opt/system_email/system_email > /opt/system_email/system_email.log
+/opt/system_email/system_email > /opt/system_email/run.log 1>&2

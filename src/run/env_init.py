@@ -5,13 +5,12 @@ from os.path import exists
 from src.file_util import get_path
 
 ENV_PATH = get_path(".env")
-ENV_TEMPLATE_PATH = get_path("public/env_template.txt")
-EXCEPTION = Exception(f"{ENV_PATH} is not complete. Check that all properties in .env are complete.")
+ENV_TEMPLATE_PATH = get_path("public/env-template.txt")
+EXCEPTION = Exception(f"{ENV_PATH} does not exist. Run the install command " +
+                      "to create it.")
 
 
 def check_env_values():
-    print("env_init.check_env_values - checking for valid .env")
-
     # Read the properties from the template
     with open(ENV_TEMPLATE_PATH, 'r') as f:
         template_string = f.read()
@@ -28,23 +27,10 @@ def check_env_values():
             raise EXCEPTION
 
 
-def create_env_file():
-    print("env_init.create_env_file - creating .env")
+def env_check():
+    print("env_init.env_check - checking for a valid .env file")
 
-    with open(ENV_TEMPLATE_PATH, 'r') as f:
-        template_string = f.read()
-
-    with open(ENV_PATH, 'w') as f:
-        f.write(template_string)
-
-
-def env_init():
-    print("env_init - checking for valid .env")
-
-    file_exists = exists(ENV_PATH)
-
-    if file_exists:
+    if exists(ENV_PATH):
         check_env_values()
     else:
-        create_env_file()
         raise EXCEPTION
