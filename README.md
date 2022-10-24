@@ -44,7 +44,7 @@ sudo tar -xf system_email.tar.gz -C /opt/
 Check that the script works by printing its version.
 
 ```shell
-./opt/system_email/system_email --version
+/opt/system_email/system_email --version
 ```
 
 ### Configure the script
@@ -52,7 +52,7 @@ Check that the script works by printing its version.
 Run the `install` command and answer the question to configure the script.
 
 ```shell
-./opt/system_email/system_email install
+/opt/system_email/system_email install
 ```
 
 ## Usage
