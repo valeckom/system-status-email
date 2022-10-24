@@ -4,21 +4,22 @@ This script is for emailing (Debian distro) Linux system information for passive
 monitoring. The registered email address will receive a weekly email containing
 basic system and storage information.
 
-If there are any issues refer to the `system_email.log` inside `/opt/system_email`.
+If there are any issues the debug log is the `system_email.log` inside
+`/opt/system_email`.
 
 <!-- TOC -->
 
 * [Script install](#script-install)
     * [Get the files](#get-the-files)
     * [Configure the script](#configure-the-script)
-        * [Example .env file](#example-env-file)
-    * [Create cron task](#create-cron-task)
 * [Usage](#usage)
     * [Options](#options)
-        * [-d, --dry-run](#-d---dry-run)
-        * [-i, --install](#-i---install)
+        * [--dry-run](#--dry-run)
         * [-v, --version](#-v---version)
         * [-h, --help](#-h---help)
+    * [Commands](#commands)
+        * [install](#install)
+        * [run](#run)
 * [Email example](#email-example)
 * [Future improvements](#future-improvements)
 
@@ -48,59 +49,23 @@ Check that the script works by printing its version.
 
 ### Configure the script
 
-Generate the config file.
-*This will end in an error telling you to fill out the `.env` file*
+Run the `install` command and answer the question to configure the script.
 
 ```shell
-./opt/system_email/system_email
-```
-
-Edit the file to be able to send emails.
-
-```shell
-sudo nano /opt/system_email/.env
-```
-
-#### Example .env file
-
-The file will look like the following when done *but with your values*.
-
-```text
-EMAIL_FROM_ADDRESS=myaddress@provider.com
-EMAIL_PASSWORD=dbabdszdkxvpfkdc
-EMAIL_TO_ADDRESS=youraddress@provider.com
-```
-
-### Create cron task
-
-Run the script using the [`--install`](#-i---install) argument to generate the cron
-script in `/etc/cron.weekly/`.
-
-```shell
-sudo ./opt/system_email/system_email --install
+./opt/system_email/system_email install
 ```
 
 ## Usage
 
 ```shell
-system_email [options]
+system_email [OPTIONS] COMMAND
 ```
 
 ### Options
 
-#### -d, --dry-run
+#### --dry-run
 
-Run the script without sending an email.
-
-*This option can also be used with [`--install`](#-i---install) to try out the
-installation without modifying the system*
-
-#### -i, --install
-
-Install/Update the script into the system.
-
-> #### Important
-> To modify files in the `/etc/` dir, this option requires elevated privileges.
+Run the script without sending an email or creating files.
 
 #### -v, --version
 
@@ -109,6 +74,16 @@ Show the version and exit.
 #### -h, --help
 
 Show the help message and exit.
+
+### Commands
+
+#### install
+
+Set up the script and add it to `cron.weekly`.
+
+#### run
+
+Read the system information and send an email.
 
 ## Email example
 
@@ -187,12 +162,10 @@ Show the help message and exit.
 
 ## Future improvements
 
-1. Installer script
-    - generate `.env` with user supplied values
-2. Uninstall script
-3. Update script - load the new version and keep the `.env` file
-4. Convert `README.md` to `README.txt` for build bundle
-5. Add S.M.A.R.T. drive info table
-6. Make tables dynamic based on if data exists (hide tables that do not contain data)
-7. Be able to display more than 1 drive in "Drive partition status"
-8. Make a dashboard section for quick information (&check; or &cross; for features)
+1. Uninstall script
+2. Update script - load the new version and keep the `.env` file
+3. Convert `README.md` to `README.txt` for build bundle
+4. Add S.M.A.R.T. drive info table
+5. Make tables dynamic based on if data exists (hide tables that do not contain data)
+6. Be able to display more than 1 drive in "Drive partition status"
+7. Make a dashboard section for quick information (&check; or &cross; for features)
