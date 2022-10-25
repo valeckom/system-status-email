@@ -7,6 +7,7 @@ import time
 import PyInstaller.__main__
 
 INFO_FILENAME = "info.json"
+README_FILENAME = "README.md"
 
 
 def clean_paths():
@@ -29,8 +30,6 @@ def do_build():
         build_info["name"],
         "--add-data",
         "./public:public",
-        "--add-data",
-        "./README.md:.",
     ])
 
 
@@ -65,8 +64,17 @@ def gen_dist_info():
         f.write(json.dumps(build_info))
 
 
+def gen_readme():
+    readme_name = "README.txt"
+
+    print(f"gen_readme - Generating {readme_name}")
+
+    shutil.copyfile('README.md', f'dist/{build_info.get("name")}/{readme_name}')
+
+
 build_info = get_build_info()
 clean_paths()
 do_build()
 gen_dist_info()
+gen_readme()
 make_tarfile()
