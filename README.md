@@ -167,9 +167,8 @@ Remove the script's system integration.
 
 ## Future improvements
 
-1. Update script - load the new version and keep the `.env` file
-2. Convert `README.md` to `README.txt` for build bundle
-3. Add S.M.A.R.T. drive info table
-4. Make tables dynamic based on if data exists (hide tables that do not contain data)
-5. Be able to display more than 1 drive in "Drive partition status"
-6. Make a dashboard section for quick information (&check; or &cross; for features)
+1. Convert `README.md` to `README.txt` for build bundle
+2. Add S.M.A.R.T. drive info table
+3. Make tables dynamic based on if data exists (hide tables that do not contain data)
+4. Be able to display more than 1 drive in "Drive partition status"
+5. Make a dashboard section for quick information (&check; or &cross; for features)
