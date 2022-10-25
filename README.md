@@ -20,6 +20,7 @@ If there are any issues the debug log is the `system_email.log` inside
     * [Commands](#commands)
         * [`install`](#install)
         * [`run`](#run)
+        * [`uninstall`](#uninstall)
 * [Email example](#email-example)
 * [Future improvements](#future-improvements)
 
@@ -84,6 +85,10 @@ Set up the script and add it to `cron.weekly`.
 #### `run`
 
 Read the system information and send an email.
+
+#### `uninstall`
+
+Remove the script's system integration.
 
 ## Email example
 
@@ -162,10 +167,9 @@ Read the system information and send an email.
 
 ## Future improvements
 
-1. Uninstall script
-2. Update script - load the new version and keep the `.env` file
-3. Convert `README.md` to `README.txt` for build bundle
-4. Add S.M.A.R.T. drive info table
-5. Make tables dynamic based on if data exists (hide tables that do not contain data)
-6. Be able to display more than 1 drive in "Drive partition status"
-7. Make a dashboard section for quick information (&check; or &cross; for features)
+1. Update script - load the new version and keep the `.env` file
+2. Convert `README.md` to `README.txt` for build bundle
+3. Add S.M.A.R.T. drive info table
+4. Make tables dynamic based on if data exists (hide tables that do not contain data)
+5. Be able to display more than 1 drive in "Drive partition status"
+6. Make a dashboard section for quick information (&check; or &cross; for features)

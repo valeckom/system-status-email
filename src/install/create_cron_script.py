@@ -1,9 +1,8 @@
 import os
 import subprocess
 
+from src.core.file_const import SYS_CRON_PATH
 from src.file_util import get_path
-
-DEST = "/etc/cron.weekly/system_email"
 
 
 def create_cron_script():
@@ -24,24 +23,24 @@ def read_cron_script_src():
 
 
 def write_file(content):
-    print(f"create_cron_script.write_file - writing {DEST}")
+    print(f"create_cron_script.write_file - writing {SYS_CRON_PATH}")
 
     if os.environ.get('opt_dry_run'):
         return
 
-    with open(DEST, 'w') as f:
-        print(f"create_cron_script - writing script to {DEST}")
+    with open(SYS_CRON_PATH, 'w') as f:
+        print(f"create_cron_script - writing script to {SYS_CRON_PATH}")
         f.write(content)
 
 
 def set_permissions():
-    print(f"create_cron_script.set_permissions - Setting {DEST} permissions.")
+    print(f"create_cron_script.set_permissions - Setting {SYS_CRON_PATH} permissions.")
 
     if os.environ.get('opt_dry_run'):
         return
 
     subprocess.run(
-        ["chmod", "+x", DEST],
+        ["chmod", "+x", SYS_CRON_PATH],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True)

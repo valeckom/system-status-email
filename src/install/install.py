@@ -1,12 +1,12 @@
 import os
 
+from src.install.create_cron_script import create_cron_script
+from src.install.create_env_file import create_env_file
 from src.load_info import get_info
-from src.setup.create_cron_script import create_cron_script
-from src.setup.create_env_file import create_env_file
 from src.user_options import OPT_DRY_RUN
 
 
-def setup():
+def install():
     print(f"Installing or updating {get_info('display_name')}.")
 
     if os.environ.get(OPT_DRY_RUN):
