@@ -20,6 +20,7 @@ If there are any issues the debug log is the `system_email.log` inside
     * [Commands](#commands)
         * [`install`](#install)
         * [`run`](#run)
+        * [`uninstall`](#uninstall)
 * [Email example](#email-example)
 * [Future improvements](#future-improvements)
 
@@ -84,6 +85,10 @@ Set up the script and add it to `cron.weekly`.
 #### `run`
 
 Read the system information and send an email.
+
+#### `uninstall`
+
+Remove the script's system integration.
 
 ## Email example
 
