@@ -14,12 +14,12 @@ If there are any issues the debug log is the `system_email.log` inside
     * [Configure the script](#configure-the-script)
 * [Usage](#usage)
     * [Options](#options)
-        * [--dry-run](#--dry-run)
-        * [-v, --version](#-v---version)
-        * [-h, --help](#-h---help)
+        * [`--dry-run`](#--dry-run)
+        * [`-v, --version`](#-v---version)
+        * [`-h, --help`](#-h---help)
     * [Commands](#commands)
-        * [install](#install)
-        * [run](#run)
+        * [`install`](#install)
+        * [`run`](#run)
 * [Email example](#email-example)
 * [Future improvements](#future-improvements)
 
@@ -63,25 +63,25 @@ system_email [OPTIONS] COMMAND
 
 ### Options
 
-#### --dry-run
+#### `--dry-run`
 
 Run the script without sending an email or creating files.
 
-#### -v, --version
+#### `-v, --version`
 
 Show the version and exit.
 
-#### -h, --help
+#### `-h, --help`
 
 Show the help message and exit.
 
 ### Commands
 
-#### install
+#### `install`
 
 Set up the script and add it to `cron.weekly`.
 
-#### run
+#### `run`
 
 Read the system information and send an email.
 
