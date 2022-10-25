@@ -7,6 +7,7 @@ from src.file_util import get_path
 from src.load_info import load_info, get_info
 from src.run.run import run_system_email
 from src.setup.setup import setup
+from src.uninstall.uninstall import uninstall
 from src.user_options import OPT_DRY_RUN, OPT_VERSION
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -58,6 +59,17 @@ def run():
         return
 
     run_system_email()
+
+
+@main.command(name="uninstall")
+def cmd_uninstall():
+    """Remove the script's system integration.
+    """
+
+    if os.environ.get(OPT_VERSION):
+        return
+
+    uninstall()
 
 
 if __name__ == '__main__':
