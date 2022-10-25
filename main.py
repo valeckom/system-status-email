@@ -4,9 +4,9 @@ import click
 from dotenv import load_dotenv
 
 from src.file_util import get_path
+from src.install.install import install
 from src.load_info import load_info, get_info
 from src.run.run import run_system_email
-from src.setup.setup import setup
 from src.uninstall.uninstall import uninstall
 from src.user_options import OPT_DRY_RUN, OPT_VERSION
 
@@ -39,19 +39,19 @@ def main(dry_run, version):
         os.environ[OPT_VERSION] = OPT_VERSION
 
 
-@main.command()
-def install():
+@main.command(name="install")
+def cmd_install():
     """Set up the script and add it to `cron.weekly`.
     """
 
     if os.environ.get(OPT_VERSION):
         return
 
-    setup()
+    install()
 
 
-@main.command()
-def run():
+@main.command(name="run")
+def cmd_run():
     """Read the system information and send an email.
     """
 
