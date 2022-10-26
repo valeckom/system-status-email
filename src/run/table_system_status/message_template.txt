@@ -1,0 +1,5 @@
+System status
+-------------
+Hostname:           ${hostname}
+Uptime:             ${uptime}
+Pending updates:    ${pending_upgrades}

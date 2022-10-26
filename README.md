@@ -107,13 +107,12 @@ Remove the script's system integration.
 
 <body>
 <h3>Main Server's update</h3>
-<p>Wed Oct 19 23:17:02 2022</p>
 
 <h3>System status</h3>
 <table>
     <tr>
         <th>Hostname</th>
-        <td>mainserver</td>
+        <td>main server</td>
     </tr>
     <tr>
         <th>Uptime</th>
@@ -180,7 +179,6 @@ Remove the script's system integration.
 
 ## Future improvements
 
-1. Make tables dynamic based on if data exists (hide tables that do not contain data)
-2. Be able to display more than 1 drive in "Drive partition status"
-3. Make a dashboard section for quick information (&check; or &cross; for features)
-4. Add S.M.A.R.T. drive info table
+1. Be able to display more than 1 drive in "Drive partition status"
+2. Make a dashboard section for quick information (&check; or &cross; for features)
+3. Add S.M.A.R.T. drive info table
