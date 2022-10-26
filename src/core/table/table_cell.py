@@ -6,6 +6,10 @@ class TableCell:
         self._is_header = is_header
         self._content = content
 
+    @property
+    def content(self):
+        return self._content
+
     def get_soup_tag(self, soup: BeautifulSoup) -> Tag:
         html_tag = 'th' if self._is_header else 'td'
 

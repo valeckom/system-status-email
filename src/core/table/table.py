@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from prettytable import PrettyTable
 
 from src.core.table.table_row import TableRow
 
@@ -26,3 +27,13 @@ class Table:
         div_tag.append(table_tag)
 
         return div_tag
+
+    def get_plain_text(self):
+        table = PrettyTable()
+        table.align = 'l'
+        table.header = False
+
+        for row in self._rows:
+            table.add_row(row.get_content_list())
+
+        return table.get_string(title=self._header) + '\n'

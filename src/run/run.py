@@ -18,36 +18,50 @@ def run_system_email():
 
     env_check()
 
+    plain_text = ''
+
+    sys_info = get_sys_info()
+    title_host_name = sys_info.get('hostname').title()
+
+    plain_text += f'{title_host_name}\'s update\n\n'
+
     with open(get_path('public/message_template.html')) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
     try:
         system_table = get_table_system_status()
+
         system_soup_tag = system_table.get_soup_tag(soup)
         soup.body.append(system_soup_tag)
-    except:
-        print()
+
+        plain_text += system_table.get_plain_text()
+    except Exception as e:
+        print(e)
 
     try:
         drive_table = get_table_drive_part()
+
         drive_soup_tag = drive_table.get_soup_tag(soup)
         soup.body.append(drive_soup_tag)
-    except:
-        print()
+
+        plain_text += drive_table.get_plain_text()
+    except Exception as e:
+        print(e)
 
     try:
         zpool_table = get_table_zpool()
+
         zpool_soup_tag = zpool_table.get_soup_tag(soup)
         soup.body.append(zpool_soup_tag)
-    except:
-        print()
+
+        plain_text += zpool_table.get_plain_text()
+    except Exception as e:
+        print(e)
 
     print(soup.prettify())
+    print(plain_text)
 
     to_address = environ.get("EMAIL_TO_ADDRESS")
-
-    sys_info = get_sys_info()
-    title_host_name = sys_info.get('hostname').title()
 
     send_email(
         to_address,
