@@ -10,7 +10,7 @@ from src.user_options import OPT_DRY_RUN
 FILE_PATH = get_path(".env")
 
 
-def create_env_file():
+def env_file_install():
     if exists(FILE_PATH):
         if in_should_use_old_env():
             return

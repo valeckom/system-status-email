@@ -1,7 +1,7 @@
 import os
 
-from src.install.create_cron_script import create_cron_script
-from src.install.create_env_file import create_env_file
+from src.install.cron_script_install import cron_script_install
+from src.install.env_file_install import env_file_install
 from src.load_info import get_info
 from src.user_options import OPT_DRY_RUN
 
@@ -12,7 +12,7 @@ def install():
     if os.environ.get(OPT_DRY_RUN):
         print("--dry-run: no changes will be made to the system")
 
-    create_env_file()
-    create_cron_script()
+    env_file_install()
+    cron_script_install()
 
     print("Installation is complete.")
