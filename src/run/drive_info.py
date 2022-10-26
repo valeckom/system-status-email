@@ -1,5 +1,5 @@
-import re
-import subprocess
+from re import search
+from subprocess import run, PIPE
 
 
 def get_drive_partition_info():
@@ -13,10 +13,10 @@ def get_drive_partition_info():
     }
 
     try:
-        cmd_result = subprocess.run(
+        cmd_result = run(
             ["/usr/bin/df", '-h'],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stdout=PIPE,
+            stderr=PIPE,
             text=True
         )
         print("get_drive_partition_info.cmd_result:", cmd_result)
@@ -26,7 +26,7 @@ def get_drive_partition_info():
 
     regex = r"(?P<filesystem>/dev/sd.*?)\s+(?P<size>.*?\w)\s+(?P<used>.*?\w)\s+(?P<avail>.*?\w)\s+(?P<usepercent>.*?\w%)\s+(?P<mountpoint>.*?)\s"
 
-    matches = re.search(regex, cmd_result.stdout)
+    matches = search(regex, cmd_result.stdout)
 
     if not matches:
         return res_dict

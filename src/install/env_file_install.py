@@ -1,8 +1,8 @@
-import os
+from os import environ
 from os.path import exists
 from string import Template
 
-import click
+from click import confirm, prompt
 
 from src.file_util import get_path
 from src.user_options import OPT_DRY_RUN
@@ -27,19 +27,19 @@ def env_file_install():
 
 
 def in_should_use_old_env():
-    return click.confirm('A previous configuration was found. Do you want to use it?')
+    return confirm('A previous configuration was found. Do you want to use it?')
 
 
 def in_from_email_address():
-    return click.prompt("Enter the email address that will be sending the email")
+    return prompt("Enter the email address that will be sending the email")
 
 
 def in_email_password():
-    return click.prompt("Enter the email account password")
+    return prompt("Enter the email account password")
 
 
 def in_to_email_address():
-    return click.prompt("Enter the email address that you want the email to go to")
+    return prompt("Enter the email address that you want the email to go to")
 
 
 def gen_env_file_content(template_map):
@@ -54,7 +54,7 @@ def gen_env_file_content(template_map):
 def write_env_file(content):
     print("create_env_file.create_env_file - writing .env")
 
-    if os.environ.get(OPT_DRY_RUN):
+    if environ.get(OPT_DRY_RUN):
         return
 
     with open(FILE_PATH, 'w') as f:

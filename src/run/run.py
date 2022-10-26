@@ -1,5 +1,5 @@
-import datetime
 import os
+from datetime import datetime
 from string import Template
 
 from src.file_util import get_path
@@ -23,7 +23,7 @@ def run_system_email():
     title_host_name = sys_info["hostname"].title()
     pending_upgrades = get_sys_update_info()
 
-    date_obj = datetime.datetime.now()
+    date_obj = datetime.now()
     date_str = date_obj.strftime("%c")
 
     template_mapping = {

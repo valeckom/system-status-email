@@ -1,5 +1,5 @@
-import os
-import subprocess
+from os import environ
+from subprocess import run, PIPE
 
 from click import prompt
 
@@ -61,7 +61,7 @@ def read_cron_script_src():
 def write_file(content, path):
     print(f"create_cron_script.write_file - writing {path}")
 
-    if os.environ.get('opt_dry_run'):
+    if environ.get('opt_dry_run'):
         return
 
     with open(path, 'w') as f:
@@ -72,11 +72,11 @@ def write_file(content, path):
 def set_permissions(path):
     print(f"create_cron_script.set_permissions - Setting {path} permissions.")
 
-    if os.environ.get('opt_dry_run'):
+    if environ.get('opt_dry_run'):
         return
 
-    subprocess.run(
+    run(
         ["chmod", "+x", path],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
         text=True)
