@@ -2,7 +2,8 @@
 
 This script is for emailing (Debian distro) Linux system information for passive
 monitoring. The registered email address will receive a periodic email containing
-basic system and storage information. You can see an example email [here](#email-example).
+basic system and storage information. You can see an example email
+[here](#email-example).
 
 If there are any issues the debug log is the `system_email.log` inside
 `/opt/system_email`.
@@ -51,9 +52,10 @@ Check that the script works by printing its version.
 ### Configure the script
 
 Run the [`install`](#install) command and answer the prompts to configure the script.
+*This must be run with elevated permissions to modify cron system files.*
 
 ```shell
-/opt/system_email/system_email install
+sudo /opt/system_email/system_email install
 ```
 
 #### Install prompts
