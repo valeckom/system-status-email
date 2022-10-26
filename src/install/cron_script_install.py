@@ -1,9 +1,9 @@
 import os
 import subprocess
-from os.path import exists
 
 from click import prompt
 
+from src.core.file_cleanup import remove_any_previous_scripts
 from src.core.file_const import SYS_CRON_PATHS
 from src.file_util import get_path
 
@@ -56,15 +56,6 @@ def read_cron_script_src():
         content = f.read()
 
     return content
-
-
-def remove_any_previous_scripts():
-    print(f"remove_any_previous_scripts - cleaning up any previous cron " +
-          "scripts.")
-
-    for path in SYS_CRON_PATHS.values():
-        if exists(path):
-            os.remove(path)
 
 
 def write_file(content, path):
