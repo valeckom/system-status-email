@@ -1,19 +1,19 @@
-import re
-import subprocess
+from re import search
+from subprocess import run, PIPE
 
 
 def get_sys_info():
     regex = r".*Static hostname: (?P<hostname>.*)(.|\s)*?Operating System: (?P<os>.*)(.|\s)*?Kernel: (?P<kernel>.*)"
 
-    cmd_result = subprocess.run(
+    cmd_result = run(
         ["hostnamectl"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
         text=True
     )
     print("get_sys_info.cmd_result:", cmd_result)
 
-    matches = re.search(regex, cmd_result.stdout)
+    matches = search(regex, cmd_result.stdout)
 
     if matches:
         res = matches.groupdict()
@@ -22,10 +22,10 @@ def get_sys_info():
 
 
 def get_uptime():
-    cmd_result = subprocess.run(
+    cmd_result = run(
         ["uptime", "-p"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
         text=True
     )
     print("get_sys_info.get_uptime.cmd_result:", cmd_result)
@@ -53,10 +53,10 @@ def get_zpool_info():
     }
 
     try:
-        cmd_result = subprocess.run(
+        cmd_result = run(
             ["/sbin/zpool", 'list'],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stdout=PIPE,
+            stderr=PIPE,
             text=True
         )
         print("get_zpool_info.cmd_result:", cmd_result)
@@ -66,7 +66,7 @@ def get_zpool_info():
 
     regex = r"\n(?P<name>\S*)\s*(?P<size>\S*)\s*(?P<alloc>\S*)\s*(?P<free>\S*)\s*(?P<ckpoint>\S*)\s*(?P<expandsz>\S*)\s*(?P<frag>\S*)\s*(?P<cap>\S*)\s*(?P<dedup>\S*)\s*(?P<health>\S*)\s*(?P<altroot>\S*)"
 
-    matches = re.search(regex, cmd_result.stdout)
+    matches = search(regex, cmd_result.stdout)
 
     if not matches:
         return res_dict
@@ -87,10 +87,10 @@ def get_sys_update_info():
     r = '-'
 
     try:
-        cmd_result = subprocess.run(
+        cmd_result = run(
             ["apt-get", "upgrade", "--dry-run"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stdout=PIPE,
+            stderr=PIPE,
             text=True
         )
         print("get_sys_update_info.cmd_result:", cmd_result)
@@ -100,7 +100,7 @@ def get_sys_update_info():
 
     regex = r"(?P<pendingUpgrades>\d*) upgraded, "
 
-    matches = re.search(regex, cmd_result.stdout)
+    matches = search(regex, cmd_result.stdout)
 
     if matches:
         res = matches.groupdict()
@@ -108,44 +108,3 @@ def get_sys_update_info():
         r = res.get("pendingUpgrades")
 
     return r
-
-
-def get_drive_partition_info():
-    res_dict = {
-        "filesystem": '-',
-        "size": '-',
-        "used": '-',
-        "avail": '-',
-        "usepercent": '-',
-        "mountpoint": '-',
-    }
-
-    try:
-        cmd_result = subprocess.run(
-            ["/usr/bin/df", '-h'],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
-        )
-        print("get_drive_partition_info.cmd_result:", cmd_result)
-    except Exception as e:
-        print("get_zpool_info.ERROR: ", e)
-        return res_dict
-
-    regex = r"(?P<filesystem>/dev/sd.*?)\s+(?P<size>.*?\w)\s+(?P<used>.*?\w)\s+(?P<avail>.*?\w)\s+(?P<usepercent>.*?\w%)\s+(?P<mountpoint>.*?)\s"
-
-    matches = re.search(regex, cmd_result.stdout)
-
-    if not matches:
-        return res_dict
-
-    match_dict = matches.groupdict()
-    print("get_drive_partition_info.match_dict:", match_dict)
-
-    for res_dict_key in res_dict.keys():
-        res_val = match_dict.get(res_dict_key)
-
-        if res_val is not None:
-            res_dict.update({res_dict_key: res_val})
-
-    return res_dict

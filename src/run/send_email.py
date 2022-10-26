@@ -1,15 +1,15 @@
 # From https://mljar.com/blog/python-send-email/
-import os
-import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from os import environ
+from smtplib import SMTP_SSL
 
 from src.user_options import OPT_DRY_RUN
 
 
 def send_email(to, subject, message, message_html):
-    email_address = os.environ.get("EMAIL_FROM_ADDRESS")
-    email_password = os.environ.get("EMAIL_PASSWORD")
+    email_address = environ.get("EMAIL_FROM_ADDRESS")
+    email_password = environ.get("EMAIL_PASSWORD")
 
     if email_address is None or email_password is None:
         # no email address or password
@@ -34,10 +34,10 @@ def send_email(to, subject, message, message_html):
     msg.attach(part2)
 
     # send email
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+    with SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(email_address, email_password)
 
-        if os.environ.get(OPT_DRY_RUN):
+        if environ.get(OPT_DRY_RUN):
             return
 
         smtp.send_message(msg)

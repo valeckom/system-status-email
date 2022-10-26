@@ -1,6 +1,6 @@
-import os
-import re
+from os import environ
 from os.path import exists
+from re import findall, MULTILINE
 
 from src.file_util import get_path
 
@@ -16,11 +16,11 @@ def check_env_values():
         template_string = f.read()
 
     regex = "^(.*)="
-    matches = re.findall(regex, template_string, re.MULTILINE)
+    matches = findall(regex, template_string, MULTILINE)
 
     # See if the properties have values in the .env file
     for prop in matches:
-        v = os.environ.get(prop)
+        v = environ.get(prop)
 
         if v == '':
             print(f"env_init.check_env_values.ERROR - {prop} is empty")

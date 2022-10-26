@@ -1,12 +1,13 @@
-import datetime
 import os
+from datetime import datetime
 from string import Template
 
 from src.file_util import get_path
 from src.load_info import get_info
+from src.run.drive_info import get_drive_partition_info
 from src.run.env_init import env_check
 from src.run.send_email import send_email
-from src.run.system_info import get_uptime, get_zpool_info, get_sys_info, get_drive_partition_info, get_sys_update_info
+from src.run.system_info import get_uptime, get_zpool_info, get_sys_info, get_sys_update_info
 from src.user_options import OPT_DRY_RUN
 
 
@@ -22,7 +23,7 @@ def run_system_email():
     title_host_name = sys_info["hostname"].title()
     pending_upgrades = get_sys_update_info()
 
-    date_obj = datetime.datetime.now()
+    date_obj = datetime.now()
     date_str = date_obj.strftime("%c")
 
     template_mapping = {
