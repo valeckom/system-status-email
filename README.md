@@ -1,8 +1,8 @@
 # System Email
 
 This script is for emailing (Debian distro) Linux system information for passive
-monitoring. The registered email address will receive a weekly email containing
-basic system and storage information.
+monitoring. The registered email address will receive a periodic email containing
+basic system and storage information. You can see an example email [here](#email-example).
 
 If there are any issues the debug log is the `system_email.log` inside
 `/opt/system_email`.
@@ -50,11 +50,22 @@ Check that the script works by printing its version.
 
 ### Configure the script
 
-Run the `install` command and answer the question to configure the script.
+Run the [`install`](#install) command and answer the prompts to configure the script.
 
 ```shell
 /opt/system_email/system_email install
 ```
+
+#### Install prompts
+
+If you want to change any of these values in the future re-run the
+[`install`](#install) command.
+
+1. Enter the email address that will be sending the email
+2. Enter the email account password
+3. Enter the email address that you want the email to go to
+4. How often do you want to send emails? *"Hourly", "Daily", etc...* The default
+   is "Weekly".
 
 ## Usage
 
@@ -167,7 +178,7 @@ Remove the script's system integration.
 
 ## Future improvements
 
-1. Add S.M.A.R.T. drive info table
-2. Make tables dynamic based on if data exists (hide tables that do not contain data)
-3. Be able to display more than 1 drive in "Drive partition status"
-4. Make a dashboard section for quick information (&check; or &cross; for features)
+1. Make tables dynamic based on if data exists (hide tables that do not contain data)
+2. Be able to display more than 1 drive in "Drive partition status"
+3. Make a dashboard section for quick information (&check; or &cross; for features)
+4. Add S.M.A.R.T. drive info table
