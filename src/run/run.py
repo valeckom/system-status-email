@@ -1,4 +1,5 @@
 from os import environ
+from re import sub
 
 from bs4 import BeautifulSoup
 
@@ -53,17 +54,9 @@ def run_system_email():
     append_table(get_table_drive_part)
     append_table(get_table_zpool)
 
-    try:
-        zpool_table = get_table_zpool()
+    min_html = minify_html(str(soup))
 
-        zpool_soup_tag = zpool_table.get_soup_tag(soup)
-        soup.body.append(zpool_soup_tag)
-
-        plain_text += zpool_table.get_plain_text()
-    except Exception as e:
-        print(e)
-
-    print(soup.prettify())
+    print(min_html)
     print(plain_text)
 
     to_address = environ.get("EMAIL_TO_ADDRESS")
@@ -72,6 +65,14 @@ def run_system_email():
         to_address,
         f"{title_host_name}'s Status Update",
         plain_text,
-        str(soup))
+        min_html)
 
     print(f"{get_info('display_name')} completed successfully.")
+
+
+def minify_html(html: str) -> str:
+    """Remove whitespace in the HTML"""
+
+    regex = r"\n\s*"
+
+    return sub(regex, '', html, 0)
