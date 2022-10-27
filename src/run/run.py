@@ -46,7 +46,7 @@ def run_system_email():
     with open(get_path('public/message_template.html')) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
-    header_tag = soup.new_tag('h3')
+    header_tag = soup.new_tag('h2')
     header_tag.string = title_host_name
     soup.body.append(header_tag)
 
