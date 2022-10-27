@@ -105,8 +105,8 @@ Remove the script's system integration.
 
 ## Email example
 
-<body>
-<h3>Main Server's update</h3>
+<div style="background-color: #FAFAFA">
+<h2>Main Server's update</h2>
 
 <h3>System status</h3>
 <table>
@@ -173,9 +173,7 @@ Remove the script's system integration.
         <td>ONLINE</td>
     </tr>
 </table>
-</body>
-
-<hr/>
+</div>
 
 ## Future improvements
 
