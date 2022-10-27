@@ -13,6 +13,24 @@ from src.user_options import OPT_DRY_RUN
 
 
 def run_system_email():
+    plain_text = ''
+
+    def append_table(table_func):
+        """Add the table to the HTML and Plain Text content."""
+
+        nonlocal plain_text
+        nonlocal soup
+
+        try:
+            table = table_func()
+
+            tag = table.get_soup_tag(soup)
+            soup.body.append(tag)
+
+            plain_text += table.get_plain_text()
+        except Exception as e:
+            print(e)
+
     if environ.get(OPT_DRY_RUN):
         print("--dry-run: No email will be sent.\n")
 
@@ -44,9 +62,9 @@ def run_system_email():
         drive_soup_tag = drive_table.get_soup_tag(soup)
         soup.body.append(drive_soup_tag)
 
-        plain_text += drive_table.get_plain_text()
-    except Exception as e:
-        print(e)
+    append_table(get_table_system_status)
+    append_table(get_table_drive_part)
+    append_table(get_table_zpool)
 
     try:
         zpool_table = get_table_zpool()
