@@ -66,7 +66,7 @@ def run_system_email():
     send_email(
         to_address,
         f"{title_host_name}'s Status Update",
-        '',
+        plain_text,
         str(soup))
 
     print(f"{get_info('display_name')} completed successfully.")
