@@ -36,31 +36,18 @@ def run_system_email():
 
     env_check()
 
-    plain_text = ''
-
     sys_info = get_sys_info()
     title_host_name = sys_info.get('hostname').title()
+    title_host_name = f'{title_host_name}\'s update'
 
-    plain_text += f'{title_host_name}\'s update\n\n'
+    plain_text += f'{title_host_name}\n\n'
 
     with open(get_path('public/message_template.html')) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
-    try:
-        system_table = get_table_system_status()
-
-        system_soup_tag = system_table.get_soup_tag(soup)
-        soup.body.append(system_soup_tag)
-
-        plain_text += system_table.get_plain_text()
-    except Exception as e:
-        print(e)
-
-    try:
-        drive_table = get_table_drive_part()
-
-        drive_soup_tag = drive_table.get_soup_tag(soup)
-        soup.body.append(drive_soup_tag)
+    header_tag = soup.new_tag('h3')
+    header_tag.string = title_host_name
+    soup.body.append(header_tag)
 
     append_table(get_table_system_status)
     append_table(get_table_drive_part)
