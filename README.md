@@ -105,15 +105,9 @@ Remove the script's system integration.
 
 ## Email example
 
-> <h2>Main Server's update</h2><h3>System status</h3><table><tr><th>Hostname</th><td>main server</td></tr><tr><th>
-> Uptime</th><td>6 hours, 8 minutes</td></tr><tr><th>Pending updates</th><td>0</td></tr></table><h3>Drive partition
-> status</h3><table><tr><th>Filesystem</th><td>/dev/sda1</td></tr><tr><th>Size</th><td>457G</td></tr><tr><th>Used</th><td>
-> 70G</td></tr><tr><th>Available</th><td>364G</td></tr><tr><th>Use%</th><td>17%</td></tr></table><h3>ZPool
-> status</h3><table><tr><th>Size</th><td>18.1T</td></tr><tr><th>Free space</th><td>3.36T</td></tr><tr><th>
-> Fragmentation</th><td>12%</td></tr><tr><th>Capacity</th><td>81%</td></tr><tr><th>Health</th><td>ONLINE</td></tr></table>
+> <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en"><head><title>System Status</title><meta content="date=no" name="format-detection"/><meta content="telephone=no" name="format-detection"/><meta content="width=device-width, initial-scale=1" name="viewport"><style type="text/CSS"></style></meta></head><head><title></title><style type="text/css">body {font-family: Roboto, Arial, sans-serif;padding: 1rem;}table {border-collapse: collapse;margin-bottom: 3rem;width: 100%;}tr {border-bottom: 1px solid;}td, th {text-align: left;padding: .5rem;}</style></head><body><h2 style="color: #424242">Workstation's update</h2><div style="color: #424242"><h3>System status</h3><table><tr><th>Hostname</th><td>workstation</td></tr><tr><th>Uptime</th><td>4 hours, 42 minutes</td></tr><tr><th>Pending upgrades</th><td>1</td></tr></table></div><div style="color: #424242"><h3>Drive partition status</h3><table><tr><th>Filesystem</th><td>/dev/sda1</td><td>/dev/sdb1</td></tr><tr><th>Size</th><td>1.6G</td><td>7.8G</td></tr><tr><th>Used</th><td>1.5M</td><td>66M</td></tr><tr><th>Available</th><td>1.6G</td><td>7.8G</td></tr><tr><th>Use%</th><td>1%</td><td>1%</td></tr></table><h3>ZPool status</h3><table><tr><th>Size</th><td>18.1T</td></tr><tr><th>Free space</th><td>3.36T</td></tr><tr><th>Fragmentation</th><td>12%</td></tr><tr><th>Capacity</th><td>81%</td></tr><tr><th>Health</th><td>ONLINE</td></tr></table></div></body></html>
 
 ## Future improvements
 
-1. Be able to display more than 1 drive in "Drive partition status"
-2. Make a dashboard section for quick information (&check; or &cross; for features)
-3. Add S.M.A.R.T. drive info table
+1. Make a dashboard section for quick information (&check; or &cross; for features)
+2. Add S.M.A.R.T. drive info table
