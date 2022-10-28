@@ -1,8 +1,10 @@
-from re import search
+from re import finditer
 from subprocess import run, PIPE
 
 
-def parse_cmd(command: str, regex: str) -> dict:
+def parse_cmd(command: str, regex: str) -> list[dict[str, str]]:
+    res = list()
+
     cmd_result = run(
         command.split(),
         stdout=PIPE,
@@ -10,9 +12,9 @@ def parse_cmd(command: str, regex: str) -> dict:
         text=True
     )
 
-    matches = search(regex, cmd_result.stdout)
+    matches = finditer(regex, cmd_result.stdout)
 
-    if matches:
-        res = matches.groupdict()
-        print(res)
-        return res
+    for match in matches:
+        res.append(match.groupdict())
+
+    return res
