@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from prettytable import PrettyTable
 
+from src.core.html_const import COLOR
 from src.core.table.table_row import TableRow
 
 
@@ -23,6 +24,7 @@ class Table:
             table_tag.append(row_tag)
 
         div_tag = soup.new_tag('div')
+        div_tag['style'] = f'color: {COLOR}'
         div_tag.append(header_tag)
         div_tag.append(table_tag)
 

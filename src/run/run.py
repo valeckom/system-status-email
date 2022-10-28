@@ -3,6 +3,7 @@ from re import sub
 
 from bs4 import BeautifulSoup
 
+from src.core.html_const import COLOR
 from src.file_util import get_path
 from src.load_info import get_info
 from src.run.env_init import env_check
@@ -47,6 +48,7 @@ def run_system_email():
         soup = BeautifulSoup(fp, 'html.parser')
 
     header_tag = soup.new_tag('h2')
+    header_tag['style'] = f'color: {COLOR}'
     header_tag.string = title_host_name
     soup.body.append(header_tag)
 
