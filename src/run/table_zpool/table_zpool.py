@@ -28,4 +28,4 @@ def get_table_zpool() -> Table:
 def get_zpool_info():
     regex = r"\n(?P<name>\S*)\s*(?P<size>\S*)\s*(?P<alloc>\S*)\s*(?P<free>\S*)\s*(?P<ckpoint>\S*)\s*(?P<expandsz>\S*)\s*(?P<frag>\S*)\s*(?P<cap>\S*)\s*(?P<dedup>\S*)\s*(?P<health>\S*)\s*(?P<altroot>\S*)"
 
-    return parse_cmd("/sbin/zpool list", regex)
+    return parse_cmd("/sbin/zpool list", regex)[0]
