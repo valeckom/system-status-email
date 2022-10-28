@@ -105,75 +105,12 @@ Remove the script's system integration.
 
 ## Email example
 
-<div style="background-color: #FAFAFA">
-<h2>Main Server's update</h2>
-
-<h3>System status</h3>
-<table>
-    <tr>
-        <th>Hostname</th>
-        <td>main server</td>
-    </tr>
-    <tr>
-        <th>Uptime</th>
-        <td>6 hours, 8 minutes</td>
-    </tr>
-    <tr>
-        <th>Pending updates</th>
-        <td>0</td>
-    </tr>
-</table>
-
-
-<h3>Drive partition status</h3>
-<table>
-    <tr>
-        <th>Filesystem</th>
-        <td>/dev/sda1</td>
-    </tr>
-    <tr>
-        <th>Size</th>
-        <td>457G</td>
-    </tr>
-    <tr>
-        <th>Used</th>
-        <td>70G</td>
-    </tr>
-    <tr>
-        <th>Available</th>
-        <td>364G</td>
-    </tr>
-    <tr>
-        <th>Use%</th>
-        <td>17%</td>
-    </tr>
-</table>
-
-
-<h3>ZPool status</h3>
-<table>
-    <tr>
-        <th>Size</th>
-        <td>18.1T</td>
-    </tr>
-    <tr>
-        <th>Free space</th>
-        <td>3.36T</td>
-    </tr>
-    <tr>
-        <th>Fragmentation</th>
-        <td>12%</td>
-    </tr>
-    <tr>
-        <th>Capacity</th>
-        <td>81%</td>
-    </tr>
-    <tr>
-        <th>Health</th>
-        <td>ONLINE</td>
-    </tr>
-</table>
-</div>
+> <h2>Main Server's update</h2><h3>System status</h3><table><tr><th>Hostname</th><td>main server</td></tr><tr><th>
+> Uptime</th><td>6 hours, 8 minutes</td></tr><tr><th>Pending updates</th><td>0</td></tr></table><h3>Drive partition
+> status</h3><table><tr><th>Filesystem</th><td>/dev/sda1</td></tr><tr><th>Size</th><td>457G</td></tr><tr><th>Used</th><td>
+> 70G</td></tr><tr><th>Available</th><td>364G</td></tr><tr><th>Use%</th><td>17%</td></tr></table><h3>ZPool
+> status</h3><table><tr><th>Size</th><td>18.1T</td></tr><tr><th>Free space</th><td>3.36T</td></tr><tr><th>
+> Fragmentation</th><td>12%</td></tr><tr><th>Capacity</th><td>81%</td></tr><tr><th>Health</th><td>ONLINE</td></tr></table>
 
 ## Future improvements
 
